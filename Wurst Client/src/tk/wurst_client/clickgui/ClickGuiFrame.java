@@ -12,8 +12,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -55,17 +55,28 @@ public class ClickGuiFrame extends JDialog
 		getContentPane().setLayout(new BorderLayout());
 		{
 			JPanel panel_1 = new JPanel();
-			getContentPane().add(panel_1, BorderLayout.NORTH);
-			panel_1.setBackground(new Color(8, 8, 8));
-			panel_1.addMouseMotionListener(new MouseMotionAdapter()
+			MouseAdapter mouseAdapter = new MouseAdapter()
 			{
+				private Point offset;
+				
+				@Override
+				public void mousePressed(MouseEvent e)
+				{
+					offset = e.getPoint();
+				}
+				
 				@Override
 				public void mouseDragged(MouseEvent e)
 				{
 					Point location = e.getLocationOnScreen();
+					location.translate(-offset.x, -offset.y);
 					setLocation(location);
 				}
-			});
+			};
+			panel_1.addMouseListener(mouseAdapter);
+			panel_1.addMouseMotionListener(mouseAdapter);
+			getContentPane().add(panel_1, BorderLayout.NORTH);
+			panel_1.setBackground(new Color(8, 8, 8));
 			FlowLayout fl_panel_1 = (FlowLayout)panel_1.getLayout();
 			fl_panel_1.setAlignment(FlowLayout.RIGHT);
 			{
