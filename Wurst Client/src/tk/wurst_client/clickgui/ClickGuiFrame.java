@@ -10,22 +10,17 @@ package tk.wurst_client.clickgui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
-import javax.swing.border.LineBorder;
 
 public class ClickGuiFrame extends JDialog
 {
@@ -59,7 +54,7 @@ public class ClickGuiFrame extends JDialog
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		{
-			JPanel panel_1 = new JPanel();
+			JPanel titleBar = new JPanel();
 			MouseAdapter mouseAdapter = new MouseAdapter()
 			{
 				private Point offset;
@@ -78,36 +73,23 @@ public class ClickGuiFrame extends JDialog
 					setLocation(location);
 				}
 			};
-			panel_1.addMouseListener(mouseAdapter);
-			panel_1.addMouseMotionListener(mouseAdapter);
-			getContentPane().add(panel_1, BorderLayout.NORTH);
-			panel_1.setBackground(new Color(8, 8, 8));
-			FlowLayout fl_panel_1 = (FlowLayout)panel_1.getLayout();
-			fl_panel_1.setAlignment(FlowLayout.RIGHT);
+			titleBar.addMouseListener(mouseAdapter);
+			titleBar.addMouseMotionListener(mouseAdapter);
+			getContentPane().add(titleBar, BorderLayout.NORTH);
+			titleBar.setBackground(new Color(8, 8, 8));
+			FlowLayout fl_titleBar = (FlowLayout)titleBar.getLayout();
+			fl_titleBar.setAlignment(FlowLayout.RIGHT);
 			{
-				JButton btnMinimize = new JButton();
-				btnMinimize.setBorder(new LineBorder(new Color(0, 0, 0)));
-				btnMinimize.setContentAreaFilled(false);
-				btnMinimize.setFocusPainted(false);
-				btnMinimize.setMargin(new Insets(0, 0, 0, 0));
-				BufferedImage image = new BufferedImage(28, 28, BufferedImage.TYPE_4BYTE_ABGR);
-				Graphics2D g = image.createGraphics();
-				g.setColor(new Color(64, 64, 64, 128));
-				g.fillRect(0, 0, 28, 28);
-				g.setColor(Color.BLACK);
-				g.drawPolygon(new int[]{2, 26, 14}, new int[]{8, 8, 22}, 3);
-				g.setColor(new Color(0, 255, 0, 64));
-				g.fillPolygon(new int[]{2, 26, 14}, new int[]{8, 8, 22}, 3);
-				btnMinimize.setIcon(new ImageIcon(image));
-				panel_1.add(btnMinimize);
+				JButton btnMinimize = new MinimizeButton();
+				titleBar.add(btnMinimize);
 			}
 			{
 				JButton btnPin = new JButton("Pin");
-				panel_1.add(btnPin);
+				titleBar.add(btnPin);
 			}
 			{
 				JButton btnClose = new JButton("Close");
-				panel_1.add(btnClose);
+				titleBar.add(btnClose);
 			}
 		}
 		{
