@@ -10,17 +10,22 @@ package tk.wurst_client.clickgui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
+import javax.swing.border.LineBorder;
 
 public class ClickGuiFrame extends JDialog
 {
@@ -80,7 +85,20 @@ public class ClickGuiFrame extends JDialog
 			FlowLayout fl_panel_1 = (FlowLayout)panel_1.getLayout();
 			fl_panel_1.setAlignment(FlowLayout.RIGHT);
 			{
-				JButton btnMinimize = new JButton("Minimize");
+				JButton btnMinimize = new JButton();
+				btnMinimize.setBorder(new LineBorder(new Color(0, 0, 0)));
+				btnMinimize.setContentAreaFilled(false);
+				btnMinimize.setFocusPainted(false);
+				btnMinimize.setMargin(new Insets(0, 0, 0, 0));
+				BufferedImage image = new BufferedImage(28, 28, BufferedImage.TYPE_4BYTE_ABGR);
+				Graphics2D g = image.createGraphics();
+				g.setColor(new Color(64, 64, 64, 128));
+				g.fillRect(0, 0, 28, 28);
+				g.setColor(Color.BLACK);
+				g.drawPolygon(new int[]{2, 26, 14}, new int[]{8, 8, 22}, 3);
+				g.setColor(new Color(0, 255, 0, 64));
+				g.fillPolygon(new int[]{2, 26, 14}, new int[]{8, 8, 22}, 3);
+				btnMinimize.setIcon(new ImageIcon(image));
 				panel_1.add(btnMinimize);
 			}
 			{
