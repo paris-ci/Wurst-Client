@@ -80,7 +80,7 @@ public class WFrame extends JDialog
 			FlowLayout fl_titleBar = (FlowLayout)titleBar.getLayout();
 			fl_titleBar.setAlignment(FlowLayout.RIGHT);
 			{
-				JButton btnMinimize = new WMinimizeButton();
+				WMinimizeButton btnMinimize = new WMinimizeButton();
 				titleBar.add(btnMinimize);
 			}
 			{
