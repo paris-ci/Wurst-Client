@@ -9,16 +9,9 @@ package tk.wurst_client.clickgui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
 
 public class WMinimizeButton extends WButton
 {
-	@Override
-	protected void click(ActionEvent e)
-	{
-		
-	}	
-	
 	@Override
 	protected void drawIcon(Graphics2D g)
 	{

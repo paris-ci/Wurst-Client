@@ -10,8 +10,6 @@ package tk.wurst_client.clickgui;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -26,14 +24,6 @@ public abstract class WButton extends JButton
 		setContentAreaFilled(false);
 		setFocusPainted(false);
 		setMargin(new Insets(0, 0, 0, 0));
-		addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				click(e);
-			}
-		});
 		BufferedImage image = new BufferedImage(28, 28, BufferedImage.TYPE_4BYTE_ABGR);
 		drawIcon(image.createGraphics());
 		setIcon(new ImageIcon(image));
@@ -45,8 +35,6 @@ public abstract class WButton extends JButton
 		setPressedIcon(new ImageIcon(image));
 	}
 	
-	protected abstract void click(ActionEvent e);
-
 	protected abstract void drawIcon(Graphics2D g);
 	
 	protected abstract void drawHoverIcon(Graphics2D g);
