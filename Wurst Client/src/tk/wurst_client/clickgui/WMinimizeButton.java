@@ -11,7 +11,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 
-public class MinimizeButton extends ClickGuiButton
+public class WMinimizeButton extends WButton
 {
 	@Override
 	protected void drawIcon(Graphics2D g)

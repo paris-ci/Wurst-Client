@@ -18,9 +18,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
-public abstract class ClickGuiButton extends JButton
+public abstract class WButton extends JButton
 {	
-	public ClickGuiButton()
+	public WButton()
 	{
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setContentAreaFilled(false);

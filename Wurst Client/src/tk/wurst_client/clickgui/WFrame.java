@@ -22,7 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
-public class ClickGuiFrame extends JDialog
+public class WFrame extends JDialog
 {
 	
 	/**
@@ -33,7 +33,7 @@ public class ClickGuiFrame extends JDialog
 		try
 		{
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			ClickGuiFrame dialog = new ClickGuiFrame();
+			WFrame dialog = new WFrame();
 			dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		}catch(Exception e)
@@ -45,7 +45,7 @@ public class ClickGuiFrame extends JDialog
 	/**
 	 * Create the dialog.
 	 */
-	public ClickGuiFrame()
+	public WFrame()
 	{
 		setUndecorated(true);
 		setOpacity(0.5f);
@@ -80,7 +80,7 @@ public class ClickGuiFrame extends JDialog
 			FlowLayout fl_titleBar = (FlowLayout)titleBar.getLayout();
 			fl_titleBar.setAlignment(FlowLayout.RIGHT);
 			{
-				JButton btnMinimize = new MinimizeButton();
+				JButton btnMinimize = new WMinimizeButton();
 				titleBar.add(btnMinimize);
 			}
 			{
