@@ -35,13 +35,14 @@ public abstract class WButton extends JButton
 			}
 		});
 		BufferedImage image = new BufferedImage(28, 28, BufferedImage.TYPE_4BYTE_ABGR);
-		ImageIcon icon = new ImageIcon(image);
 		drawIcon(image.createGraphics());
-		setIcon(icon);
+		setIcon(new ImageIcon(image));
+		image = new BufferedImage(28, 28, BufferedImage.TYPE_4BYTE_ABGR);
 		drawHoverIcon(image.createGraphics());
-		setRolloverIcon(icon);
+		setRolloverIcon(new ImageIcon(image));
+		image = new BufferedImage(28, 28, BufferedImage.TYPE_4BYTE_ABGR);
 		drawPressedIcon(image.createGraphics());
-		setPressedIcon(icon);
+		setPressedIcon(new ImageIcon(image));
 	}
 	
 	protected abstract void click(ActionEvent e);
