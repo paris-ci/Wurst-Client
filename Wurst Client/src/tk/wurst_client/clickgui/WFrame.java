@@ -21,9 +21,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class WFrame extends JDialog
 {
+	private JScrollPane scrollPane;
 	
 	/**
 	 * Launch the application.
@@ -51,7 +54,7 @@ public class WFrame extends JDialog
 		setOpacity(0.5f);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setAlwaysOnTop(true);
-		setBounds(100, 100, 450, 300);
+		setLocation(100, 100);
 		getContentPane().setLayout(new BorderLayout());
 		{
 			JPanel titleBar = new JPanel();
@@ -81,6 +84,15 @@ public class WFrame extends JDialog
 			fl_titleBar.setAlignment(FlowLayout.RIGHT);
 			{
 				WMinimizeButton btnMinimize = new WMinimizeButton();
+				btnMinimize.addItemListener(new ItemListener()
+				{
+					@Override
+					public void itemStateChanged(ItemEvent e)
+					{
+						scrollPane.setVisible(e.getStateChange() == ItemEvent.SELECTED);
+						pack();
+					}
+				});
 				titleBar.add(btnMinimize);
 			}
 			{
@@ -93,7 +105,8 @@ public class WFrame extends JDialog
 			}
 		}
 		{
-			JScrollPane scrollPane = new JScrollPane();
+			scrollPane = new JScrollPane();
+			scrollPane.setVisible(false);
 			getContentPane().add(scrollPane, BorderLayout.CENTER);
 			{
 				JPanel panel = new JPanel();
@@ -102,6 +115,6 @@ public class WFrame extends JDialog
 				panel.setLayout(new GridLayout(0, 1, 0, 0));
 			}
 		}
+		pack();
 	}
-	
 }
