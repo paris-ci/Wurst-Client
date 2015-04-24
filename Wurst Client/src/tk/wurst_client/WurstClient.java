@@ -27,13 +27,14 @@ public enum WurstClient
 {
 	INSTANCE;
 	
-	public static final String VERSION = "1.13";
+	public static final String VERSION = "1.14";
 	public String currentServerIP = "127.0.0.1:25565";
 	public ServerListEntryNormal lastServer;
 	public boolean startupMessageDisabled = false;
 	
 	public ChatMessenger chat;
 	public CmdManager cmdManager;
+	public EventManager eventManager;
 	public FileManager fileManager;
 	public Friends friends;
 	public GuiManager guiManager;
@@ -45,6 +46,7 @@ public enum WurstClient
 	
 	public void startClient()
 	{
+		eventManager = new EventManager();
 		modManager = new ModManager();
 		guiManager = new GuiManager();
 		cmdManager = new CmdManager();
@@ -59,7 +61,6 @@ public enum WurstClient
 		guiManager.setTheme(new WurstTheme());
 		guiManager.setup();
 		updater.checkForUpdate();
-		EventManager.init();
 		analytics = new Analytics("UA-52838431-5", "client.wurst-client.tk");
 	}
 }

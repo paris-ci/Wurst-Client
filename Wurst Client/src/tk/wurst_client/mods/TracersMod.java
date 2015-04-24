@@ -11,7 +11,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import tk.wurst_client.WurstClient;
-import tk.wurst_client.events.EventManager;
 import tk.wurst_client.events.listeners.RenderListener;
 import tk.wurst_client.mods.Mod.Category;
 import tk.wurst_client.mods.Mod.Info;
@@ -25,7 +24,7 @@ public class TracersMod extends Mod implements RenderListener
 	@Override
 	public void onEnable()
 	{
-		EventManager.render.addListener(this);
+		WurstClient.INSTANCE.eventManager.add(RenderListener.class, this);
 	}
 	
 	@Override
@@ -38,13 +37,14 @@ public class TracersMod extends Mod implements RenderListener
 			if(entity instanceof EntityPlayer
 				&& !((Entity)entity).getName().equals(
 					Minecraft.getMinecraft().getSession().getUsername()))
-				RenderUtils.tracerLine((Entity)entity, WurstClient.INSTANCE.friends
-					.contains(((EntityPlayer)entity).getName()) ? 1 : 0);
+				RenderUtils.tracerLine((Entity)entity,
+					WurstClient.INSTANCE.friends
+						.contains(((EntityPlayer)entity).getName()) ? 1 : 0);
 	}
 	
 	@Override
 	public void onDisable()
 	{
-		EventManager.render.removeListener(this);
+		WurstClient.INSTANCE.eventManager.remove(RenderListener.class, this);
 	}
 }
